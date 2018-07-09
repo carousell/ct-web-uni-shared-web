@@ -17,7 +17,7 @@ export default class Button extends Component {
     const { imgSrc, onClick, ...rest } = this.props;
     return (
       <A onClick={onClick} {...rest}>
-        <img src={imgSrc} height={40} width={40} />
+        <img src={imgSrc} height={40} width={40} alt='share button'/>
       </A>
     )
   }
