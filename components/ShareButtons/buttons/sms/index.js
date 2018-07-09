@@ -3,7 +3,7 @@ import Button from './../../button'
 // import styled from 'styled-components';
 // import styles from './styles.scss';
 
-import icon from '../../../../../static/vertical-xe-img/icons/sms.svg'
+import icon from 'shared_web/components/ShareButtons/sms.svg';
 
 export default class SMS extends Component {
   handleOnClick = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from './../../button'
 
-import icon from '../../../../../static/vertical-xe-img/icons/zalo.svg'
+import icon from 'shared_web/components/ShareButtons/zalo.svg';
 
 const zaloAppId = '570044068386186227'
 

@@ -4,7 +4,7 @@ import Button from './../../button'
 import styles from './styles.scss';
 import copy from 'copy-to-clipboard';
 
-import icon from '../../../../../static/vertical-xe-img/icons/copylink.svg'
+import icon from 'shared_web/components/ShareButtons/copylink.svg'
 
 export default class Copy extends Component {
 

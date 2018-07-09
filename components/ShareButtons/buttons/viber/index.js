@@ -3,7 +3,7 @@ import Button from './../../button'
 // import styled from 'styled-components';
 // import styles from './styles.scss';
 
-import icon from '../../../../../static/vertical-xe-img/icons/viber.svg'
+import icon from 'shared_web/components/ShareButtons/viber.svg';
 
 export default class Viber extends Component {
   handleOnClick = () => {

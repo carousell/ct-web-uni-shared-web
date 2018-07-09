@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Button from './../../button'
 // import styled from 'styled-components';
 // import styles from './styles.scss';
-
-import icon from '../../../../../static/vertical-xe-img/icons/messenger.svg'
+import icon from 'shared_web/components/ShareButtons/messenger.svg';
 
 export default class Messenger extends Component {
   handleOnClick = () => {
