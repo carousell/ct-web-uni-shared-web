@@ -1,4 +1,8 @@
-export function bindTrackingHeaderEvents(utag) {
+function taolao() {
+  console.log('123123');
+}
+function bindTrackingHeaderEvents(utag) {
+  taolao();
   const tid = setInterval(() => {
     if (document.readyState !== 'complete') return;
   clearInterval(tid);
@@ -56,6 +60,8 @@ export function bindTrackingHeaderEvents(utag) {
     }
   });
   return 0;
-});
-}, 100);
+  });
+  }, 100);
 }
+
+module.exports = bindTrackingHeaderEvents;
