@@ -1,8 +1,4 @@
-function taolao() {
-  console.log('123123');
-}
 function bindTrackingHeaderEvents(utag) {
-  taolao();
   const tid = setInterval(() => {
     if (document.readyState !== 'complete') return;
   clearInterval(tid);
