@@ -1,41 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-import styled, { injectGlobal } from 'styled-components';
-injectGlobal`
-div.custom-modal-content {
-       display: block;
-      position: absolute;
-      top: -300px;
-      opacity: 1;
-      width: 300px;
-      height: 200px;
-      z-index: 10000;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      background-color: white;
-      overflow-y: scroll;
-      transition: top 0.5s, opacity 0.3s;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      // -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-      background-clip: padding-box;
-      outline: 0;
-}
+import styled from 'styled-components';
+
+const ModalWrapper = styled.div`
+  position: absolute;
+  display: block;
+  opacity: 1;
+  max-width: 600px;
+  width: 80vw;
+  z-index: 10000;
+  left: 0;
+  right: 0;
+  top: ${props => `${props.top}px`};
+  margin: 0 auto;
+  background-color: white;
+  overflow-y: scroll;
+  transition: top 0.5s, opacity 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+  @media (max-width: 768px) {
+    width: ${props => props.fullScreenMobile ? '100%' : null};
+    height: ${props => props.fullScreenMobile ? '100%' : null};
+    top:  ${props => props.fullScreenMobile ? '0px' : `${props.top}px`};
+  }
 `;
 
 const BackDrop = styled.div`
-    display: block;
-    opacity: 0.5;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-    background-color: #000;
+  display: block;
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
 `;
-class ModalContent extends React.Component {
+
+const CloseButton = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: #999;
+  border-radius: 10px;
+  background-color: #666;
+  color: #fff;
+`;
+
+const __CLIENT__ = typeof window !== "undefine";
+
+class ModalContent extends React.Component {  // eslint-disable-line
   static propTypes = {
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func.isRequired,
@@ -93,9 +114,12 @@ class ModalContent extends React.Component {
       <div>
         {isOpen && <BackDrop />}
         {isOpen &&
-          <div style={{ top: `${top}px` }} className={cx('custom-modal-content')} ref={this.setWrapperRef}>
+          <ModalWrapper top={top} ref={this.setWrapperRef}>
+            <CloseButton onClick={this.props.onHide}>
+              ×
+            </CloseButton>
             {this.props.children}
-          </div>
+          </ModalWrapper>
         }
       </div>
     );
