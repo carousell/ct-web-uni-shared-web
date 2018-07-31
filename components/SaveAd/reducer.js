@@ -18,6 +18,7 @@ const initialState = {
   fetching: false,
   count: 0,
   data: [],
+  limitAds: 50,
 };
 
 const POST_SAVE_AD_ACTIONS = {
@@ -82,7 +83,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     }
     case GET_SAVE_AD_SUCCESS: {
-      let { ads = [] } = action.result;
+      let { ads = [], limit } = action.result;
       const activeAds = {};
 
       if (!ads) {
@@ -100,6 +101,7 @@ export default function reducer(state = initialState, action = {}) {
         success: true,
         data: ads,
         count: ads.length,
+        limitAds: limit,
       };
     }
     case GET_SAVE_AD_FAIL: {
