@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-// import styles from './styles.scss';
 
-//
 const A = styled.a`
   cursor: pointer;
   margin: 10px 5px 0 10px;

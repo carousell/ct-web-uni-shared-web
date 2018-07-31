@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-// import styles from './styles.scss';
-
-import icon from '../../../../../static/vertical-xe-img/icons/facebook.svg'
-
 const fbAppId = '221564734660253'
-//
-// const MainComponent = styled.div`
-//   background-image: url("/static/chotot-img/c2cCategoryIcon/3030.svg");
-// `;
+
 
 export default class Facebook extends Component {
   componentDidMount() {
@@ -49,7 +41,10 @@ export default class Facebook extends Component {
 
   render () {
     return (
-      <Button onClick={this.handleOnClick} imgSrc={icon} />
+      <Button
+        onClick={this.handleOnClick}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-facebook.svg"
+      />
     )
   }
 }

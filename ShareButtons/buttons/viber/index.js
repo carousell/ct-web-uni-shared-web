@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-// import styles from './styles.scss';
-
-import icon from '../../../../../static/vertical-xe-img/icons/viber.svg'
 
 export default class Viber extends Component {
   handleOnClick = () => {
-    // eslint-disable-next-line
     const { clickShareButton } = this.props;
     clickShareButton({ xtName: 'share_ad_via_viber' });
   }
@@ -24,7 +19,7 @@ export default class Viber extends Component {
     return (
       <Button
         target="_blank" href={viberLink}
-        imgSrc={icon}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-viber.svg"
         onClick={this.handleOnClick}
       />
     )
