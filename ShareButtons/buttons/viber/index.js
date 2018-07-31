@@ -4,7 +4,9 @@ import Button from './../../button'
 export default class Viber extends Component {
   handleOnClick = () => {
     const { clickShareButton } = this.props;
-    clickShareButton({ xtName: 'share_ad_via_viber' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_viber' });
+    }
   }
   render () {
     const { link, mobileDevice } = this.props;

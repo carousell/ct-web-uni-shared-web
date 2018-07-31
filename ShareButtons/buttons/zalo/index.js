@@ -20,7 +20,9 @@ export default class Zalo extends Component {
 
   handleOnClick = () => {
     const { clickShareButton } = this.props;
-    clickShareButton({ xtName: 'share_ad_via_zalo' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_zalo' });
+    }
   }
 
   render () {

@@ -28,10 +28,13 @@ export default class Facebook extends Component {
     /* eslint-enable */
   }
   handleOnClick = () => {
-    // eslint-disable-next-line
     const { link, clickShareButton } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_facebook]`;
-    clickShareButton({ xtName: 'share_ad_via_facebook' });
+
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_facebook' });
+    }
+
     window.FB.ui({
       method: 'share',
       href: taggedLink,

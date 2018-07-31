@@ -15,7 +15,9 @@ export default class Messenger extends Component {
     }
 
     window.FB.ui(params);
-    clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+    }
   }
 
   render () {

@@ -21,7 +21,10 @@ export default class Copy extends Component {
         copiedTooltip: false
       });
     }, 2000);
-    clickShareButton({ xtName: 'share_ad_via_copylink' });
+
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_copylink' });
+    }
   }
 
   render () {

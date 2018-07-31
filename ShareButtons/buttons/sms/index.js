@@ -4,7 +4,9 @@ import Button from './../../button'
 export default class SMS extends Component {
   handleOnClick = () => {
     const { clickShareButton } = this.props;
-    clickShareButton({ xtName: 'share_ad_via_sms' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_sms' });
+    }
   }
   render () {
     const { link, mobileDevice } = this.props;
