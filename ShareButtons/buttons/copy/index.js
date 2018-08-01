@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-import styles from './styles.scss';
 import copy from 'copy-to-clipboard';
-
-import icon from '../../../../../static/vertical-xe-img/icons/copylink.svg'
 
 export default class Copy extends Component {
 
@@ -25,7 +21,10 @@ export default class Copy extends Component {
         copiedTooltip: false
       });
     }, 2000);
-    clickShareButton({ xtName: 'share_ad_via_copylink' });
+
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_copylink' });
+    }
   }
 
   render () {
@@ -34,11 +33,11 @@ export default class Copy extends Component {
       <span>
         <Button
           onClick={this.handleOnClick}
-          imgSrc={icon}
+          imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-copylink.svg"
         />
         {
           copiedTooltip && (
-            <span className={styles.copiedTooltip}>
+            <span>
               Đã copy link
             </span>
           )

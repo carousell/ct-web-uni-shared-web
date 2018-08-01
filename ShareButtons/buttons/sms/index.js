@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-// import styles from './styles.scss';
-
-import icon from '../../../../../static/vertical-xe-img/icons/sms.svg'
 
 export default class SMS extends Component {
   handleOnClick = () => {
-    // eslint-disable-next-line
     const { clickShareButton } = this.props;
-    clickShareButton({ xtName: 'share_ad_via_sms' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_sms' });
+    }
   }
   render () {
     const { link, mobileDevice } = this.props;
@@ -24,7 +21,7 @@ export default class SMS extends Component {
     return (
       <Button
         href={smsLink}
-        imgSrc={icon}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-sms.svg"
         onClick={this.handleOnClick}
       />
     )
