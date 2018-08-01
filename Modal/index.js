@@ -70,51 +70,54 @@ class ModalContent extends React.Component {  // eslint-disable-line
       top: -300
     };
   }
+
   componentWillMount() {
     if (__CLIENT__) {
       this.setState({
         isOpen: this.props.show
       });
     }
-  };
+  }
+
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
     this.startTransitionModal();
   }
+
   componentWillReceiveProps(nextProps) {
     if (__CLIENT__) {
       this.setState({
         isOpen: nextProps.show
       });
     }
-  };
+  }
+
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
   }
+
   handleClickOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      console.log('==> click out side', event);
       const { onHide } = this.props;
       if (onHide) {
         onHide();
       }
     }
   };
-  setWrapperRef = (node) => {
-    this.wrapperRef = node;
-  };
+
   startTransitionModal = () => {
     this.setState({
       top: 60
     });
   }
+
   render() {
     const { isOpen, top } = this.state;
     return (
       <div>
         {isOpen && <BackDrop />}
         {isOpen &&
-          <ModalWrapper top={top} ref={this.setWrapperRef}>
+          <ModalWrapper top={top} innerRef={(node) => { this.wrapperRef = node }}>
             <CloseButton onClick={this.props.onHide}>
               ×
             </CloseButton>
@@ -124,7 +127,7 @@ class ModalContent extends React.Component {  // eslint-disable-line
       </div>
     );
   }
-};
+}
 
 const Modal = ({ show, onHide, children }) => {
   return (
