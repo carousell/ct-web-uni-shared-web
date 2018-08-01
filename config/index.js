@@ -1,5 +1,3 @@
-const env = (process.browser ? window.ENV : process.env.ENV) || 'development';
-
 const config = {
   development: {
     cookieDomain: 'localhost',
@@ -67,9 +65,6 @@ const config = {
       },
     },
   },
-}[env];
-
-module.exports = {
-  config,
-  env,
 };
+
+module.exports = { config };
