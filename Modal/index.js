@@ -6,12 +6,13 @@ const ModalWrapper = styled.div`
   position: absolute;
   display: block;
   opacity: 1;
-  max-width: 600px;
+  max-width: 460px;
   width: 80vw;
   z-index: 10000;
   left: 0;
   right: 0;
-  top: ${props => `${props.top}px`};
+  top: 50vh;
+  transform: translateY(-50%);
   margin: 0 auto;
   background-color: white;
   overflow-y: scroll;
@@ -22,7 +23,7 @@ const ModalWrapper = styled.div`
   @media (max-width: 768px) {
     width: ${props => props.fullScreenMobile ? '100%' : null};
     height: ${props => props.fullScreenMobile ? '100%' : null};
-    top:  ${props => props.fullScreenMobile ? '0px' : `${props.top}px`};
+    top:  ${props => props.fullScreenMobile ? '0px' : `50vh`};
   }
 `;
 
