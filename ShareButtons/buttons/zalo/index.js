@@ -26,14 +26,19 @@ export default class Zalo extends Component {
   }
 
   render () {
-    const { link } = this.props;
+    const { content, link } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_zalo]`;
+    const shareContent = `${content} ${taggedLink}`;
     return (
       <Button
         onClick={this.handleOnClick}
         imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-zalo.svg"
         className={'zalo-share-button'}
-        data-href={taggedLink} data-oaid={zaloAppId} data-layout="2" data-color="blue" data-customize
+        data-href={shareContent}
+        data-oaid={zaloAppId}
+        data-layout="2"
+        data-color="blue"
+        data-customize
       />
     )
   }
