@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-// import styles from './styles.scss';
-import icon from 'shared_web/components/ShareButtons/messenger.svg';
 
 export default class Messenger extends Component {
   handleOnClick = () => {
-    // eslint-disable-next-line
-    const { link, mobileDevice, clickShareButton } = this.props;
+    const { content, link, mobileDevice, clickShareButton } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_fbmessenger]`;
+    console.log('content', content);
     const params = {
       method: 'send',
-      link: taggedLink
+      link: taggedLink,
+      quote: content,
     };
 
     if (mobileDevice) {
@@ -19,7 +17,9 @@ export default class Messenger extends Component {
     }
 
     window.FB.ui(params);
-    clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+    if (clickShareButton) {
+      clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+    }
   }
 
   render () {
@@ -28,7 +28,10 @@ export default class Messenger extends Component {
       return null;
     }
     return (
-      <Button onClick={this.handleOnClick} imgSrc={icon} />
+      <Button
+        onClick={this.handleOnClick}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-messenger.svg"
+      />
     )
   }
 }
