@@ -25,6 +25,7 @@ const ModalWrapper = styled.div`
     height: ${props => props.fullScreenMobile ? '100%' : null};
     top:  ${props => props.fullScreenMobile ? '0px' : `50vh`};
   }
+  border-radius: ${props => props.borderRadius ? props.borderRadius : null}
 `;
 
 const BackDrop = styled.div`
