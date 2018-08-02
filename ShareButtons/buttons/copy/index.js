@@ -9,13 +9,18 @@ export default class Copy extends Component {
   }
 
   handleOnClick = () => {
-    // eslint-disable-next-line
-    const { link, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_copy]`;
+    const { content, link, clickShareButton } = this.props;
+    let taggedLink = `${link}#xtatc=INT-5-[share_ad_via_copy]`;
+    if (content) {
+      taggedLink = `${content} ${taggedLink}`;
+    }
+
     copy(taggedLink);
+
     this.setState({
       copiedTooltip: true
     });
+
     setTimeout(() => {
       this.setState({
         copiedTooltip: false

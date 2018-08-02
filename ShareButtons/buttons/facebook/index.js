@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Button from './../../button'
 const fbAppId = '221564734660253'
 
-
 export default class Facebook extends Component {
   componentDidMount() {
     /* eslint-disable */
@@ -27,8 +26,9 @@ export default class Facebook extends Component {
     }
     /* eslint-enable */
   }
+
   handleOnClick = () => {
-    const { link, clickShareButton } = this.props;
+    const { content, link, clickShareButton } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_facebook]`;
 
     if (clickShareButton) {
@@ -38,7 +38,7 @@ export default class Facebook extends Component {
     window.FB.ui({
       method: 'share',
       href: taggedLink,
-      quote: ''
+      quote: content,
     });
   }
 

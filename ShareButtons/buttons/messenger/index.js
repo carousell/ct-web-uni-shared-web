@@ -3,11 +3,12 @@ import Button from './../../button'
 
 export default class Messenger extends Component {
   handleOnClick = () => {
-    const { link, mobileDevice, clickShareButton } = this.props;
+    const { content, link, mobileDevice, clickShareButton } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_fbmessenger]`;
     const params = {
       method: 'send',
-      link: taggedLink
+      link: taggedLink,
+      quote: content,
     };
 
     if (mobileDevice) {

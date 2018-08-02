@@ -20,3 +20,11 @@ export default class ShareButtons extends Component {
     )
   }
 }
+export {
+  Facebook,
+  Messenger,
+  Zalo,
+  Viber,
+  SMS,
+  Copy,
+};
