@@ -4,13 +4,14 @@ import Button from './../../button'
 import copy from 'copy-to-clipboard';
 
 const Wrapper = styled.span`
+  display: inline-block;
   position: relative;
 `;
 
 const Tooltip = styled.span`
   border-radius: 2px;
   position: absolute;
-  top: 20px;
+  top: 55px;
   left: 0;
   background: black;
   opacity: 0.8;
