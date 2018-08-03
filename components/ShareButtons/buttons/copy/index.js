@@ -18,6 +18,7 @@ const Tooltip = styled.span`
   color: #fff;
   padding: 5px;
   width: 100px;
+  z-index: 1;
 `;
 
 export default class Copy extends Component {
