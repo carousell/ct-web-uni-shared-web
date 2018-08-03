@@ -9,11 +9,16 @@ export default class SMS extends Component {
     }
   }
   render () {
-    const { link, mobileDevice } = this.props;
+    const { content, link, mobileDevice } = this.props;
     if (!mobileDevice) {
       return null;
     }
-    const messageText = encodeURIComponent(link);
+
+    let messageText = encodeURIComponent(link);
+
+    if (content) {
+      messageText = `${content} ${messageText}`;
+    }
     // if not work, try: https://stackoverflow.com/questions/6480462/how-to-pre-populate-the-sms-body-text-via-an-html-link
     const smsLink = mobileDevice === 'iPhone' ? `sms:&body=${messageText}` : `sms:?body=${messageText}`;
 
