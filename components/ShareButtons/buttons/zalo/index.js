@@ -19,22 +19,22 @@ export default class Zalo extends Component {
   }
 
   handleOnClick = () => {
-    const { clickShareButton } = this.props;
-    if (clickShareButton) {
-      clickShareButton({ xtName: 'share_ad_via_zalo' });
+    const { onClick } = this.props;
+    if (onClick) {
+      onClick();
     }
   }
 
   render () {
-    const { content, link } = this.props;
+    const { link } = this.props;
     const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_zalo]`;
-    const shareContent = `${content} ${taggedLink}`;
     return (
       <Button
+        title="zalo"
         onClick={this.handleOnClick}
         imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-zalo.svg"
         className={'zalo-share-button'}
-        data-href={taggedLink}
+        data-href={link}
         data-oaid={zaloAppId}
         data-layout="2"
         data-color="blue"

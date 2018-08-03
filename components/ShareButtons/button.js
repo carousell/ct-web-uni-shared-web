@@ -12,10 +12,10 @@ const A = styled.a`
 
 export default class Button extends Component {
   render () {
-    const { imgSrc, onClick, ...rest } = this.props;
+    const { title, imgSrc, onClick, ...rest } = this.props;
     return (
       <A onClick={onClick} {...rest}>
-        <img src={imgSrc} height={40} width={40} />
+        <img alt={title} src={imgSrc} height={40} width={40} />
       </A>
     )
   }

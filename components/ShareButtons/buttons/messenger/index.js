@@ -3,13 +3,10 @@ import Button from './../../button'
 
 export default class Messenger extends Component {
   handleOnClick = () => {
-    const { content, link, mobileDevice, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_fbmessenger]`;
-    console.log('content', content);
+    const { link, mobileDevice, onClick } = this.props;
     const params = {
       method: 'send',
-      link: taggedLink,
-      quote: content,
+      link,
     };
 
     if (mobileDevice) {
@@ -17,8 +14,9 @@ export default class Messenger extends Component {
     }
 
     window.FB.ui(params);
-    if (clickShareButton) {
-      clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+
+    if (onClick) {
+      onClick();
     }
   }
 
@@ -29,6 +27,7 @@ export default class Messenger extends Component {
     }
     return (
       <Button
+        title="messenger"
         onClick={this.handleOnClick}
         imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-messenger.svg"
       />

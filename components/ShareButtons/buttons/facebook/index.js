@@ -4,7 +4,6 @@ const fbAppId = '221564734660253'
 
 export default class Facebook extends Component {
   componentDidMount() {
-    /* eslint-disable */
     if (!window.fbAsyncInit) {
       window.fbAsyncInit = function() {
         window.FB.init({
@@ -24,20 +23,18 @@ export default class Facebook extends Component {
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     }
-    /* eslint-enable */
   }
 
   handleOnClick = () => {
-    const { content, link, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_facebook]`;
+    const { content, link, onClick } = this.props;
 
-    if (clickShareButton) {
-      clickShareButton({ xtName: 'share_ad_via_facebook' });
+    if (onClick) {
+      onClick();
     }
 
     window.FB.ui({
       method: 'share',
-      href: taggedLink,
+      href: link,
       quote: content,
     });
   }
@@ -45,6 +42,7 @@ export default class Facebook extends Component {
   render () {
     return (
       <Button
+        title="facebook"
         onClick={this.handleOnClick}
         imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-facebook.svg"
       />

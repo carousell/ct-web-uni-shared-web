@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Button from './../../button'
 import copy from 'copy-to-clipboard';
 
-export default class Copy extends Component {
+const Wrapper = styled.span`
+  position: relative;
+`;
 
+const Tooltip = styled.span`
+  border-radius: 2px;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: black;
+  opacity: 0.8;
+  color: #fff;
+  padding: 5px;
+  width: 100px;
+`;
+
+export default class Copy extends Component {
   state = {
     copiedTooltip: false
   }
 
   handleOnClick = () => {
-    const { content, link, clickShareButton } = this.props;
-    let taggedLink = `${link}#xtatc=INT-5-[share_ad_via_copy]`;
+    const { content, link, onClick } = this.props;
+    let taggedLink = link;
+
     if (content) {
-      taggedLink = `${content} ${taggedLink}`;
+      taggedLink = `${content} ${link}`;
     }
 
     copy(taggedLink);
@@ -27,27 +44,28 @@ export default class Copy extends Component {
       });
     }, 2000);
 
-    if (clickShareButton) {
-      clickShareButton({ xtName: 'share_ad_via_copylink' });
+    if (onClick) {
+      onClick();
     }
   }
 
   render () {
     const { copiedTooltip } = this.state;
     return (
-      <span>
+      <Wrapper>
         <Button
+          title="copy"
           onClick={this.handleOnClick}
           imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-copylink.svg"
         />
         {
           copiedTooltip && (
-            <span>
+            <Tooltip>
               Đã copy link
-            </span>
+            </Tooltip>
           )
         }
-      </span>
+      </Wrapper>
     )
   }
 }
