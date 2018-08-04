@@ -22,8 +22,12 @@ const Tooltip = styled.span`
 `;
 
 export default class Copy extends Component {
-  state = {
-    copiedTooltip: false
+  constructor(props) {
+    super(props);
+    this.timer = undefined;
+    this.state = {
+      showTooltip: false
+    };
   }
 
   handleOnClick = () => {
@@ -37,13 +41,13 @@ export default class Copy extends Component {
     copy(taggedLink);
 
     this.setState({
-      copiedTooltip: true
+      showTooltip: true
     });
 
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.setState({
-        copiedTooltip: false
-      });
+        showTooltip: false
+      }, () => clearTimeout(this.timer));
     }, 2000);
 
     if (onClick) {
@@ -52,7 +56,6 @@ export default class Copy extends Component {
   }
 
   render () {
-    const { copiedTooltip } = this.state;
     return (
       <Wrapper>
         <Button
@@ -61,7 +64,7 @@ export default class Copy extends Component {
           imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-copylink.svg"
         />
         {
-          copiedTooltip && (
+          this.state.showTooltip && (
             <Tooltip>
               Đã copy link
             </Tooltip>

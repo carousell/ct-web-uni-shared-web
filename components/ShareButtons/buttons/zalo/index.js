@@ -27,7 +27,6 @@ export default class Zalo extends Component {
 
   render () {
     const { link } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_zalo]`;
     return (
       <Button
         title="zalo"

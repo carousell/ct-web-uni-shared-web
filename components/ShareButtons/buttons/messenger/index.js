@@ -3,13 +3,13 @@ import Button from './../../button'
 
 export default class Messenger extends Component {
   handleOnClick = () => {
-    const { link, mobileDevice, onClick } = this.props;
+    const { link, isMobile, onClick } = this.props;
     const params = {
       method: 'send',
       link,
     };
 
-    if (mobileDevice) {
+    if (isMobile) {
       params.display = 'popup';
     }
 
@@ -21,10 +21,6 @@ export default class Messenger extends Component {
   }
 
   render () {
-    const { mobileDevice } = this.props;
-    if (mobileDevice) {
-      return null;
-    }
     return (
       <Button
         title="messenger"

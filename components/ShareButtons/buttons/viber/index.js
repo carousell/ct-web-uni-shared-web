@@ -10,10 +10,7 @@ export default class Viber extends Component {
     }
   }
   render () {
-    const { content, link, mobileDevice } = this.props;
-    if (!mobileDevice) {
-      return null;
-    }
+    const { content, link } = this.props;
     let messageText = encodeURIComponent(link);
 
     if (content) {
