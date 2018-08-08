@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const SafeTipsWrapper = styled.div`
@@ -28,6 +29,7 @@ const getRandomTip = (safeTipsCat) => {
 };
 
 const SafeTips = props => {
+  console.log('props=======111', props);
   const {
     safeTips, category
   } = props;
