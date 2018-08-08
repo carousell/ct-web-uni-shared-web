@@ -15,7 +15,6 @@ const ModalWrapper = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   background-color: white;
-  overflow-y: scroll;
   transition: top 0.5s, opacity 0.3s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
@@ -58,7 +57,7 @@ const CloseButton = styled.div`
 
 const __CLIENT__ = typeof window !== "undefine";
 
-class ModalContent extends React.Component {  // eslint-disable-line
+class ModalContent extends React.Component {
   static propTypes = {
     show: PropTypes.bool.isRequired,
     onHide: PropTypes.func.isRequired,
