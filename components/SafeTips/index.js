@@ -29,7 +29,6 @@ const getRandomTip = (safeTipsCat) => {
 };
 
 const SafeTips = props => {
-  console.log('props=======111', props);
   const {
     safeTips, category
   } = props;
