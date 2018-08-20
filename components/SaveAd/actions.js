@@ -41,11 +41,11 @@ export function saveAd({ listId, gatewayUrl }) {
   }
 }
 
-export function unsaveAd({ listId, gatewayUrl }) {
+export function unsaveAd({ listId, gatewayUrl, status }) {
   const privateToken = Cookies.get('privateToken');
   return {
     types: [UNSAVE_AD, UNSAVE_AD_SUCCESS, UNSAVE_AD_FAIL],
-    payload: { listId },
+    payload: { listId, statusAd: status },
     promise: () => fetch(`${gatewayUrl}/v1/private/saved-ad/ad/${listId}`, {
       method: 'DELETE',
       headers: {
