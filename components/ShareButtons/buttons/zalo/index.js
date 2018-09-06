@@ -32,12 +32,12 @@ export default class Zalo extends Component {
         title="zalo"
         onClick={this.handleOnClick}
         imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-zalo.svg"
-        class={'zalo-share-button'}
+        className={"zalo-share-button"}
         data-href={link}
         data-oaid={zaloAppId}
         data-layout="2"
         data-color="blue"
-        data-customize={false}
+        data-customize={true}
       />
     )
   }
