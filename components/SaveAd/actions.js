@@ -51,10 +51,11 @@ export function saveAd({ listId, gatewayUrl }) {
   };
 }
 
-export function unsaveAd({ listId, gatewayUrl }) {
+export function unsaveAd({ listId, gatewayUrl, status }) {
   const privateToken = Cookies.get('privateToken');
   return {
     types: [UNSAVE_AD, UNSAVE_AD_SUCCESS, UNSAVE_AD_FAIL],
+<<<<<<< HEAD
     payload: { listId },
     promise: () =>
       fetch(`${gatewayUrl}/v1/private/saved-ad/ad/${listId}`, {
@@ -67,6 +68,17 @@ export function unsaveAd({ listId, gatewayUrl }) {
         .then(data => data.json())
         .then(data => data),
   };
+=======
+    payload: { listId, statusAd: status },
+    promise: () => fetch(`${gatewayUrl}/v1/private/saved-ad/ad/${listId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${privateToken}`,
+        'Content-Type': 'application/json',
+      },
+    }).then(data => data.json()).then(data => data),
+  }
+>>>>>>> 4f22e72d7616a0b53668f37682a505da9e40d282
 }
 
 export function resetMessage() {

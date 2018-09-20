@@ -134,12 +134,22 @@ export default function reducer(state = initialState, action = {}) {
     }
     case UNSAVE_AD_SUCCESS: {
       const { status } = action.result;
+      const { statusAd, listId } = action.payload;
       const data = DELETE_SAVE_AD_ACTIONS[status]({ action, state });
 
-      return {
-        ...state,
-        ...data,
-      };
+      if (statusAd === 'hidden') {
+        const newData = state.data.filter(item => item.list_id !== listId)
+        return {
+          ...state,
+          ...data,
+          data: newData,
+        };
+      } else {
+        return {
+          ...state,
+          ...data,
+        };
+      }
     }
     case UNSAVE_AD_FAIL: {
       return {

@@ -37,11 +37,11 @@ class SaveAd extends React.Component {
     }
 
     if (func()) {
-      const { active, listId } = this.props;
+      const { active, listId, status } = this.props;
       const state = active ? 'unlike' : 'like';
       const config = STATE[state];
       const { action } = config;
-      dispatch(action({ listId, gatewayUrl }));
+      dispatch(action({ listId, gatewayUrl, status }));
     } else {
       cb();
     }

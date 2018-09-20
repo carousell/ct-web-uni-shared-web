@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-import icon from 'shared_web/components/ShareButtons/facebook.svg';
-const fbAppId = '221564734660253';
+const fbAppId = '221564734660253'
+
 export default class Facebook extends Component {
   componentDidMount() {
-    /* eslint-disable */
     if (!window.fbAsyncInit) {
       window.fbAsyncInit = function() {
         window.FB.init({
@@ -24,23 +23,29 @@ export default class Facebook extends Component {
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     }
-    /* eslint-enable */
   }
+
   handleOnClick = () => {
-    // eslint-disable-next-line
-    const { link, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_facebook]`;
-    clickShareButton({ xtName: 'share_ad_via_facebook' });
+    const { content, link, onClick } = this.props;
+
+    if (onClick) {
+      onClick();
+    }
+
     window.FB.ui({
       method: 'share',
-      href: taggedLink,
-      quote: ''
+      href: link,
+      quote: content,
     });
   }
 
   render () {
     return (
-      <Button onClick={this.handleOnClick} imgSrc={icon} />
+      <Button
+        title="facebook"
+        onClick={this.handleOnClick}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-facebook.svg"
+      />
     )
   }
 }

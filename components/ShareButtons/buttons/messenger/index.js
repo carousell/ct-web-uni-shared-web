@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
 import Button from './../../button'
-// import styled from 'styled-components';
-// import styles from './styles.scss';
-import icon from 'shared_web/components/ShareButtons/messenger.svg';
 
 export default class Messenger extends Component {
   handleOnClick = () => {
-    // eslint-disable-next-line
-    const { link, mobileDevice, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_fbmessenger]`;
+    const { link, isMobile, onClick } = this.props;
     const params = {
       method: 'send',
-      link: taggedLink
+      link,
     };
 
-    if (mobileDevice) {
+    if (isMobile) {
       params.display = 'popup';
     }
 
     window.FB.ui(params);
-    clickShareButton({ xtName: 'share_ad_via_fbmessenger' });
+
+    if (onClick) {
+      onClick();
+    }
   }
 
   render () {
-    const { mobileDevice } = this.props;
-    if (mobileDevice) {
-      return null;
-    }
     return (
-      <Button onClick={this.handleOnClick} imgSrc={icon} />
+      <Button
+        title="messenger"
+        onClick={this.handleOnClick}
+        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-messenger.svg"
+      />
     )
   }
 }

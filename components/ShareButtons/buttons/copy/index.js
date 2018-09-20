@@ -1,49 +1,76 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Button from './../../button'
-// import styled from 'styled-components';
-import styles from './styles.scss';
 import copy from 'copy-to-clipboard';
 
-import icon from 'shared_web/components/ShareButtons/copylink.svg'
+const Wrapper = styled.span`
+  display: inline-block;
+  position: relative;
+`;
+
+const Tooltip = styled.span`
+  border-radius: 2px;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  background: black;
+  opacity: 0.8;
+  color: #fff;
+  padding: 5px;
+  width: 100px;
+  z-index: 1;
+`;
 
 export default class Copy extends Component {
-
-  state = {
-    copiedTooltip: false
+  constructor(props) {
+    super(props);
+    this.timer = undefined;
+    this.state = {
+      showTooltip: false
+    };
   }
 
   handleOnClick = () => {
-    // eslint-disable-next-line
-    const { link, clickShareButton } = this.props;
-    const taggedLink = `${link}#xtatc=INT-5-[share_ad_via_copy]`;
+    const { content, link, onClick } = this.props;
+    let taggedLink = link;
+
+    if (content) {
+      taggedLink = `${content} ${link}`;
+    }
+
     copy(taggedLink);
+
     this.setState({
-      copiedTooltip: true
+      showTooltip: true
     });
-    setTimeout(() => {
+
+    this.timer = setTimeout(() => {
       this.setState({
-        copiedTooltip: false
-      });
+        showTooltip: false
+      }, () => clearTimeout(this.timer));
     }, 2000);
-    clickShareButton({ xtName: 'share_ad_via_copylink' });
+
+    if (onClick) {
+      onClick();
+    }
   }
 
   render () {
-    const { copiedTooltip } = this.state;
     return (
-      <span>
+      <Wrapper>
         <Button
+          title="copy"
           onClick={this.handleOnClick}
-          imgSrc={icon}
+          imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-copylink.svg"
         />
         {
-          copiedTooltip && (
-            <span className={styles.copiedTooltip}>
+          this.state.showTooltip && (
+            <Tooltip>
               Đã copy link
-            </span>
+            </Tooltip>
           )
         }
-      </span>
+      </Wrapper>
     )
   }
 }
