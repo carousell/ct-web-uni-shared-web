@@ -23,7 +23,7 @@ const TipText = styled.div`
   padding-top: 20px;
 `;
 const getRandomTip = (safeTipsCat) => {
-  const randomNumTip = Math.floor(Math.random() * (safeTipsCat['sub-tips'].length + 1));
+  const randomNumTip = Math.floor(Math.random() * (safeTipsCat['sub-tips'].length)) + 1;
   const safeTip = {...safeTipsCat['sub-tips'][randomNumTip-1], url: safeTipsCat.url};
   return safeTip;
 };
