@@ -23,7 +23,7 @@ const FullWrapper = styled.button`
   outline: none;
   border: 1px solid #c90927;
   border-radius: 20px;
-  padding: 3px 10px;
+  padding: 5px 10px;
   color: #c90927;
 `;
 
