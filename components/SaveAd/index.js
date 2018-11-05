@@ -60,14 +60,14 @@ class SaveAd extends React.Component {
   getItem = (icon, size, fullView) => {
     return {
       true: () => (
-        <FullWrapper onClick={this.handleClick}>
+        <FullWrapper id='btn_save_ad' onClick={this.handleClick}>
           {icon.label}
           &nbsp;
           <img width={size} src={icon.src} alt={icon.alt} />
         </FullWrapper>
       ),
       false: () => (
-        <Wrapper onClick={this.handleClick}>
+        <Wrapper id='btn_save_ad' onClick={this.handleClick}>
           <img width={size} src={icon.src} alt={icon.alt} />
         </Wrapper>
       )
