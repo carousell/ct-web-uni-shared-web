@@ -16,17 +16,27 @@ const Wrapper = styled.button`
   outline: none;
 `;
 
+const FullWrapper = styled.button`
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border: 1px solid #c90927;
+  border-radius: 20px;
+  padding: 5px 10px;
+  color: #c90927;
+`;
+
 const STATE = {
   like: {
-    icon: { src: like, alt: 'like' },
+    icon: { src: like, alt: 'like', label: 'Yêu thích' },
     action: saveAd,
   },
   unlike: {
-    icon: { src: unlike, alt: 'unlike' },
+    icon: { src: unlike, alt: 'unlike', label: 'Đã thích' },
     action: unsaveAd,
   }
 };
-
 
 class SaveAd extends React.Component {
   handleClick = e => {
@@ -47,16 +57,31 @@ class SaveAd extends React.Component {
     }
   }
 
+  getItem = (icon, size, fullView) => {
+    return {
+      true: () => (
+        <FullWrapper onClick={this.handleClick}>
+          {icon.label}
+          &nbsp;
+          <img width={size} src={icon.src} alt={icon.alt} />
+        </FullWrapper>
+      ),
+      false: () => (
+        <Wrapper onClick={this.handleClick}>
+          <img width={size} src={icon.src} alt={icon.alt} />
+        </Wrapper>
+      )
+    }[fullView]
+  }
+
   render() {
-    const { active, size } = this.props;
+    const { active, size, fullView = false } = this.props;
     const state = active ? 'unlike' : 'like';
     const config = STATE[state];
     const { icon } = config;
-    return (
-      <Wrapper onClick={this.handleClick}>
-        <img width={size} src={icon.src} alt={icon.alt} />
-      </Wrapper>
-    )
+
+    return this.getItem(icon, size, fullView)();
+
   }
 }
 
@@ -73,6 +98,7 @@ SaveAd.propTypes = {
     func: PropTypes.func,
     cb: PropTypes.func,
   }).isRequired,
+  fullView: PropTypes.bool,
 }
 
 export default connect(mapStateToProps, null)(SaveAd);
