@@ -42,21 +42,27 @@ const BackDrop = styled.div`
 
 const CloseButton = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  text-align: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: #999;
-  border-radius: 10px;
-  background-color: #666;
-  color: #fff;
+  top: 0px;
+  right: 0px;
+  width: 40px;
+  height: 40px;
+
+  .icon {
+    margin: 10px auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    color: #999;
+    border-radius: 10px;
+    background-color: #666;
+    color: #fff;
+  }
 `;
 
-const __CLIENT__ = typeof window !== "undefine";
+const __CLIENT__ = typeof window !== "undefined";
 
 class ModalContent extends React.Component {
   static propTypes = {
@@ -73,7 +79,7 @@ class ModalContent extends React.Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (__CLIENT__) {
       this.setState({
         isOpen: this.props.show
@@ -86,7 +92,7 @@ class ModalContent extends React.Component {
     this.startTransitionModal();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (__CLIENT__) {
       this.setState({
         isOpen: nextProps.show
@@ -121,7 +127,9 @@ class ModalContent extends React.Component {
         {isOpen &&
           <ModalWrapper top={top} innerRef={(node) => { this.wrapperRef = node }}>
             <CloseButton onClick={this.props.onHide}>
-              ×
+              <div className='icon'>
+                ×
+              </div>
             </CloseButton>
             {this.props.children}
           </ModalWrapper>
