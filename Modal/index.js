@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const ModalWrapper = styled.div`
   position: absolute;
   display: block;
-  opacity: 1;
   max-width: 460px;
   width: 80vw;
   z-index: 10000;
@@ -15,7 +14,7 @@ const ModalWrapper = styled.div`
   transform: translateY(-50%);
   margin: 0 auto;
   background-color: white;
-  transition: top 0.5s, opacity 0.3s;
+  transition: opacity 0.5s, visibility 0.5s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   background-clip: padding-box;
   outline: 0;
@@ -26,6 +25,13 @@ const ModalWrapper = styled.div`
   }
   border-radius: ${props => props.borderRadius ? props.borderRadius : null}
   overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+
+  ${props => props.isOpen && css`
+    visibility: visible;
+    opacity: 1;
+  `}
 `;
 
 const BackDrop = styled.div`
@@ -38,6 +44,14 @@ const BackDrop = styled.div`
   left: 0;
   z-index: 1040;
   background-color: #000;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+
+  ${props => props.isOpen && css`
+    visibility: visible;
+    opacity: 0.5;
+  `}
 `;
 
 const CloseButton = styled.div`
@@ -123,17 +137,15 @@ class ModalContent extends React.Component {
     const { isOpen, top } = this.state;
     return (
       <div>
-        {isOpen && <BackDrop />}
-        {isOpen &&
-          <ModalWrapper top={top} innerRef={(node) => { this.wrapperRef = node }}>
-            <CloseButton onClick={this.props.onHide}>
-              <div className='icon'>
-                ×
-              </div>
-            </CloseButton>
-            {this.props.children}
-          </ModalWrapper>
-        }
+        <BackDrop isOpen={isOpen} />
+        <ModalWrapper top={top} innerRef={(node) => { this.wrapperRef = node }} isOpen={isOpen}>
+          <CloseButton onClick={this.props.onHide}>
+            <div className='icon'>
+              ×
+            </div>
+          </CloseButton>
+          {this.props.children}
+        </ModalWrapper>
       </div>
     );
   }
@@ -142,13 +154,11 @@ class ModalContent extends React.Component {
 const Modal = ({ show, onHide, children }) => {
   return (
     <div>
-      {show &&
-        <ModalContent
-          show={show}
-          onHide={onHide}
-          children={children}
-        />
-      }
+      <ModalContent
+        show={show}
+        onHide={onHide}
+        children={children}
+      />
     </div>
   );
 };
