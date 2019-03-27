@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   display: block;
   max-width: 460px;
   width: 80vw;
