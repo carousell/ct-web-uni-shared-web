@@ -14,9 +14,11 @@ const seeMore = (e) => {
   if (statusSeeMore) {
     elem.style = 'height: auto';
     elem1.innerHTML = 'Thu gọn';
+    // elem2.className = 'fa fa-angle-double-up';
   } else {
     elem.style = 'height: 200px';
     elem1.innerHTML = 'Mở rộng';
+    // elem2.className = 'fa fa-angle-double-down';
   }
   statusSeeMore = !statusSeeMore;
 };
@@ -33,7 +35,7 @@ class description extends React.Component {
         >
         </p>
         <p id="seeMore" className={Styles.seeMore}>
-          <a id="buttonSeeMoreSEO" onClick={e => seeMore(e)}>
+          <a id="buttonSeeMore" onClick={e => seeMore(e)}>
             Mở rộng
           </a>
         </p>
