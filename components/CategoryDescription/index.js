@@ -38,7 +38,7 @@ class description extends React.Component {
           </p>
           <p id="seeMore" className={Styles.seeMore}>
             <a id="buttonSeeMore" onClick={e => seeMore(e)}>
-              ⇓
+              Mở rộng
             </a>
           </p>
         </div>
