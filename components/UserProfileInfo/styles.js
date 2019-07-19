@@ -108,6 +108,20 @@ const SeperateLine = styled.div`
   width: 1px;
 `;
 
+const ShopVerifiedWrapper = styled.div`
+  padding: 0 0 0 60px;
+
+  & span {
+    font-size: 12px;
+    color: rgb(155,155,155);
+  }
+
+  & img {
+    margin-left: -6px;
+    height: 26px;
+  }
+`;
+
 export {
   UserProfileInfoWrapper,
   ProfileWrapper,
@@ -120,4 +134,5 @@ export {
   InfoWrapper,
   InfoItem,
   SeperateLine,
+  ShopVerifiedWrapper,
 }

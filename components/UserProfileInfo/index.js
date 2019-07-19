@@ -13,6 +13,7 @@ import {
   InfoWrapper,
   InfoItem,
   SeperateLine,
+  ShopVerifiedWrapper,
 } from './styles';
 
 import moment from 'moment';
@@ -35,6 +36,20 @@ const InfoItemComponent = ({ title, value }) => {
   );
 }
 
+const shopVerifiedElement = () => {
+  return (
+    <ShopVerifiedWrapper>
+      <span>Cửa hàng đã cung cấp </span>&nbsp;
+      <span >
+        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/address_verified.svg" />
+        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/certificate_verified.svg" />
+        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/email_verified.svg" />
+        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/phone_verified.svg" />
+      </span>
+    </ShopVerifiedWrapper>
+  );
+};
+
 const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ...other }) => {
 
   let privateElement = null;
@@ -44,9 +59,13 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   // user or shop
   if (adTypeConfig.adType === AdTypeEnum.PRIVATE || adTypeConfig.adType === AdTypeEnum.PRO) {
-    AdTypeLabel = 'Cá nhân';
-    // AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/circle-user.png';
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
+    if (adTypeConfig.adType === AdTypeEnum.PRO) {
+      AdTypeLabel = 'Bán chuyên';
+      AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
+    } else {
+      AdTypeLabel = 'Cá nhân';
+      AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
+    }
 
     privateElement = (
       <a
@@ -86,14 +105,26 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
       <ProfileWrapper>
         <AvatarImage avatar={adTypeConfig.avatar} />
         <NameBounder>
-          <NameDiv><b>{adTypeConfig.name}</b></NameDiv>
-          <StatusOnlineDiv>
-            <OnlineBullet online={onlineStatus}>•</OnlineBullet>
-            {chatStatus.online_time && timeAgo}
-          </StatusOnlineDiv>
+          <NameDiv>
+            <b>{adTypeConfig.name} </b>
+            {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED && (
+              <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/verification.svg" height="20" />
+            )}
+          </NameDiv>
+
+          {/* online time */}
+          {chatStatus.online_time &&
+            <StatusOnlineDiv>
+              <OnlineBullet online={onlineStatus}>•</OnlineBullet>
+              {timeAgo}
+            </StatusOnlineDiv>
+          }
         </NameBounder>
         {privateElement}
       </ProfileWrapper>
+
+      {/* shop verify icon */}
+      {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED ? shopVerifiedElement() : null}
 
       <InfoWrapper>
         {/* Personal */}
