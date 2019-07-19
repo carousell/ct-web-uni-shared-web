@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { AvatarImage } from 'components';
 import { RatingStar } from 'ct-components';
-import moment from 'moment';
 import {
   UserProfileInfoWrapper,
   ProfileWrapper,
@@ -16,6 +15,8 @@ import {
   SeperateLine,
 } from './styles';
 
+import moment from 'moment';
+require('moment/locale/vi');
 moment.locale('vi');
 
 const AdTypeEnum = {
@@ -35,8 +36,6 @@ const InfoItemComponent = ({ title, value }) => {
 }
 
 const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ...other }) => {
-
-  console.log(adTypeConfig);
 
   let privateElement = null;
   let AdTypeLabel = '';
@@ -90,7 +89,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
           <NameDiv><b>{adTypeConfig.name}</b></NameDiv>
           <StatusOnlineDiv>
             <OnlineBullet online={onlineStatus}>•</OnlineBullet>
-            {timeAgo}
+            {chatStatus.online_time && timeAgo}
           </StatusOnlineDiv>
         </NameBounder>
         {privateElement}
@@ -109,7 +108,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
           <a href={ratingDetailUrl}>
             <InfoItemComponent
               title="Đánh giá"
-              value={rating.total === 0 ?
+              value={!rating.total ?
                 '---' :
                 <RatingStar rating={rating.avg} width="13px" />
               }
@@ -119,7 +118,10 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
         {/* Response chat */}
         <SeperateLine />
-        <InfoItemComponent title="Phản hồi chat" value={`${chatStatus.response_rate * 100}%`} />
+        <InfoItemComponent
+          title="Phản hồi chat"
+          value={chatStatus.response_rate ? `${chatStatus.response_rate * 100}%` : '---'}
+        />
 
       </InfoWrapper>
     </UserProfileInfoWrapper>

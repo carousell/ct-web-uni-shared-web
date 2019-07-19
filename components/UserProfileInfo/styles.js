@@ -12,7 +12,6 @@ const UserProfileInfoWrapper = styled.div`
 const ProfileWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 10px;
 
   @media (min-width: 992px) {
     padding: 0;
@@ -71,6 +70,7 @@ const OnlineBullet = styled.span`
   font-size: 20px;
   color: ${props => props.online ? 'rgb(88, 159, 57)' : 'rgb(155, 155, 155)'};
   line-height: 21px;
+  margin-right: 5px;
 `;
 
 const InfoWrapper = styled.div`
