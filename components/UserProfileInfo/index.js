@@ -52,7 +52,7 @@ const shopVerifiedElement = () => {
 
 const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ...other }) => {
 
-  let privateElement = null;
+  let privateElement = null;  // notice goToShop func in chotot-xe project
   let AdTypeLabel = '';
   let AdTypeImg = '';
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
@@ -80,16 +80,21 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
     AdTypeLabel = 'Cửa hàng';
+    if (adTypeConfig.categoryId >= 1000 && adTypeConfig.categoryId < 2000) {
+      AdTypeLabel = 'Chuyên trang BĐS';
+    }
+
     AdTypeImg = adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED ?
       'https://static.chotot.com.vn/storage/chotot-icons/png/verified-house.png' :
       'https://static.chotot.com.vn/storage/chotot-icons/png/house.png';
+
     privateElement = (
       <a
         href={`${adTypeConfig.url}#ad_view`}
         target="_blank"
       >
         <PrimaryButton>
-          Xem cửa hàng
+          Xem {AdTypeLabel}
         </PrimaryButton>
       </a>
     );
