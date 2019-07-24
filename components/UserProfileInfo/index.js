@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { AvatarImage } from 'components';
 import { RatingStar } from 'ct-components';
 import {
@@ -14,6 +15,7 @@ import {
   InfoItem,
   SeperateLine,
   ShopVerifiedWrapper,
+  FlexDiv,
 } from './styles';
 
 import moment from 'moment';
@@ -69,7 +71,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
     privateElement = (
       <a
-        href={`${adTypeConfig.url}/${profile.account_oid}#xtatc=INT-10-[Adview]`}
+        href={`${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`}
         target="_blank"
       >
         <SecondaryButton>
@@ -80,8 +82,10 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
     AdTypeLabel = 'Cửa hàng';
-    if (adTypeConfig.categoryId >= 1000 && adTypeConfig.categoryId < 2000) {
+    let labelBtn = 'Xem Cửa hàng';
+    if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
       AdTypeLabel = 'Chuyên trang BĐS';
+      labelBtn = 'Xem Chuyên trang';
     }
 
     AdTypeImg = adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED ?
@@ -94,7 +98,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         target="_blank"
       >
         <PrimaryButton>
-          Xem {AdTypeLabel}
+          {labelBtn}
         </PrimaryButton>
       </a>
     );
@@ -110,22 +114,24 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
       <ProfileWrapper>
         <AvatarImage avatar={adTypeConfig.avatar} />
         <NameBounder>
-          <NameDiv>
-            <b>{adTypeConfig.name} </b>
-            {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED && (
-              <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/verification.svg" height="20" />
-            )}
-          </NameDiv>
+          <FlexDiv>
+            <NameDiv>
+              <b>{adTypeConfig.name} </b>
+              {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED && (
+                <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/verification.svg" height="20" />
+              )}
+            </NameDiv>
+            {privateElement}
+          </FlexDiv>
 
           {/* online time */}
-          {chatStatus.online_time &&
+          {chatStatus.user_id ? // check chat status loaded
             <StatusOnlineDiv>
               <OnlineBullet online={onlineStatus}>•</OnlineBullet>
               {timeAgo}
-            </StatusOnlineDiv>
+            </StatusOnlineDiv> : null
           }
         </NameBounder>
-        {privateElement}
       </ProfileWrapper>
 
       {/* shop verify icon */}

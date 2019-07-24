@@ -11,7 +11,6 @@ const UserProfileInfoWrapper = styled.div`
 
 const ProfileWrapper = styled.div`
   display: flex;
-  align-items: center;
 
   @media (min-width: 992px) {
     padding: 0;
@@ -20,11 +19,22 @@ const ProfileWrapper = styled.div`
 
 const NameBounder = styled.div`
   flex: 1;
-  padding-left: 10px;
+  padding-left: 8px;
 `;
 
 const NameDiv = styled.div`
   margin-bottom: 3px;
+  margin-top: 5px;
+  font-size: 13px;
+
+  flex: 1;
+  line-height: 18px;
+  height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 `;
 
 const StatusOnlineDiv = styled.div`
@@ -34,32 +44,36 @@ const StatusOnlineDiv = styled.div`
   align-items: center;
 `;
 
-const PrimaryButton = styled.button`
-  background-color: #fe9900;
-  color: #fff;
+const BaseBtn = styled.button`
   cursor: pointer;
-  padding: 7px 10px;
   text-align: center;
   transition: background-color 200ms ease-in-out;
-  border: none;
+  font-size: 10px;
+  width: max-content;
   border-radius: 20px;
-  font-size: 12px;
+  padding: 7px 10px;
+
+  &:active, &:focus{
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+`;
+
+const PrimaryButton = styled(BaseBtn)`
+  background-color: #fe9900;
+  color: #fff;
+  border: none;
 
   &:hover {
     background-color: #feb700;
   }
 `;
 
-const SecondaryButton = styled.button`
+const SecondaryButton = styled(BaseBtn)`
   background-color: #fff;
   color: #fe9900;
   border: 1px solid #fe9900;
-  cursor: pointer;
-  padding: 7px 10px;
-  text-align: center;
-  transition: background-color 200ms ease-in-out;
-  border-radius: 20px;
-  font-size: 12px;
 
   &:hover {
     background-color: #e2e6ea;
@@ -122,6 +136,10 @@ const ShopVerifiedWrapper = styled.div`
   }
 `;
 
+const FlexDiv = styled.div`
+  display: flex;
+`;
+
 export {
   UserProfileInfoWrapper,
   ProfileWrapper,
@@ -135,4 +153,5 @@ export {
   InfoItem,
   SeperateLine,
   ShopVerifiedWrapper,
+  FlexDiv,
 }
