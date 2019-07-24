@@ -29,7 +29,6 @@ const NameDiv = styled.div`
 
   flex: 1;
   line-height: 18px;
-  height: 36px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
