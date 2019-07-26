@@ -64,6 +64,14 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
     if (adTypeConfig.adType === AdTypeEnum.PRO) {
       AdTypeLabel = 'Bán chuyên';
       AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
+
+      if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {  // cate property
+        AdTypeLabel = 'Môi giới';
+      }
+      if (adTypeConfig.category >= 13000 && adTypeConfig.category < 14000) {  // cate property
+        AdTypeLabel = 'Công ty';
+      }
+
     } else {
       AdTypeLabel = 'Cá nhân';
       AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
@@ -107,7 +115,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   // chat status
   const onlineStatus = chatStatus.online_status;
   const timeAgo = onlineStatus ? 'Đang hoạt động' :
-    (chatStatus.online_time === 0 ? 'Không hoạt động' : `Hoạt động ${moment(chatStatus.online_time * 1000).fromNow()}`);
+    (chatStatus.online_time === 0 ? 'Chưa hoạt động' : `Hoạt động ${moment(chatStatus.online_time * 1000).fromNow()}`);
 
   return (
     <UserProfileInfoWrapper>
@@ -162,7 +170,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         <SeperateLine />
         <InfoItemComponent
           title="Phản hồi chat"
-          value={chatStatus.response_rate ? `${chatStatus.response_rate * 100}%` : '---'}
+          value={chatStatus.response_rate ? `${Math.floor(chatStatus.response_rate * 100)}%` : '---'}
         />
 
       </InfoWrapper>
