@@ -25,6 +25,7 @@ moment.locale('vi');
 const AdTypeEnum = {
   SHOP: 'shop',
   PRO: 'pro',
+  COMPANY: 'company',
   PRIVATE: 'private',
   SHOP_VERIFIED: 'shop_verified'
 };
@@ -60,8 +61,8 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
 
   // user or shop
-  if (adTypeConfig.adType === AdTypeEnum.PRIVATE || adTypeConfig.adType === AdTypeEnum.PRO) {
-    if (adTypeConfig.adType === AdTypeEnum.PRO) {
+  if ([AdTypeEnum.PRIVATE, AdTypeEnum.PRO, AdTypeEnum.COMPANY].indexOf(adTypeConfig.adType) > -1) {
+    if (adTypeConfig.adType === AdTypeEnum.PRO || adTypeConfig.adType === AdTypeEnum.COMPANY) {
       AdTypeLabel = 'Bán chuyên';
       AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
 
@@ -116,6 +117,10 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   const onlineStatus = chatStatus.online_status;
   const timeAgo = onlineStatus ? 'Đang hoạt động' :
     (chatStatus.online_time === 0 ? 'Chưa hoạt động' : `Hoạt động ${moment(chatStatus.online_time * 1000).fromNow()}`);
+  let responseRateText = '---';
+  if (!!chatStatus.response_rate) {
+    responseRateText = chatStatus.response_rate === -1 ? (chatStatus.response_rate_text || '---') : `${Math.floor(chatStatus.response_rate * 100)}%`;
+  }
 
   return (
     <UserProfileInfoWrapper>
@@ -170,7 +175,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         <SeperateLine />
         <InfoItemComponent
           title="Phản hồi chat"
-          value={chatStatus.response_rate ? `${Math.floor(chatStatus.response_rate * 100)}%` : '---'}
+          value={responseRateText}
         />
 
       </InfoWrapper>
