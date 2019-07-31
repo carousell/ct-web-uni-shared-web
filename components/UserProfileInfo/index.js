@@ -69,7 +69,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
       if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {  // cate property
         AdTypeLabel = 'Môi giới';
       }
-      if (adTypeConfig.category >= 13000 && adTypeConfig.category < 14000) {  // cate property
+      if (adTypeConfig.categoryId >= 13000 && adTypeConfig.categoryId < 14000) {  // cate job
         AdTypeLabel = 'Công ty';
       }
 
