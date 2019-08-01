@@ -87,9 +87,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
     AdTypeLabel = 'Cửa hàng';
     let labelBtn = 'Xem Cửa hàng';
     ProfileUrl = `${adTypeConfig.url}#ad_view`;
-    AdTypeImg = adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED ?
-      'https://static.chotot.com.vn/storage/chotot-icons/png/verified-house.png' :
-      'https://static.chotot.com.vn/storage/chotot-icons/png/house.png';
+    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/house.png';
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
       AdTypeLabel = 'Chuyên trang BĐS';
