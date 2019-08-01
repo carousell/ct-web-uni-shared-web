@@ -9,8 +9,14 @@ const UserProfileInfoWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-const ProfileWrapper = styled.div`
+const ProfileWrapper = styled.a`
   display: flex;
+  color: #333;
+
+  &:hover, &:focus {
+    color: #333;
+    outline: none;
+  }
 
   @media (min-width: 992px) {
     padding: 0;
@@ -23,10 +29,8 @@ const NameBounder = styled.div`
 `;
 
 const NameDiv = styled.div`
-  margin-bottom: 3px;
-  margin-top: 5px;
+  margin: 5px 5px 3px 0;
   font-size: 13px;
-
   flex: 1;
   line-height: 18px;
   overflow: hidden;
@@ -51,6 +55,7 @@ const BaseBtn = styled.button`
   width: max-content;
   border-radius: 20px;
   padding: 7px 10px;
+  height: fit-content;
 
   &:active, &:focus{
     outline: 0;
@@ -92,6 +97,7 @@ const InfoWrapper = styled.div`
   padding-top: 10px;
   text-align: center;
   align-items: center;
+  font-size: 12px;
 
   & > a {
     flex: 1;

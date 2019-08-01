@@ -58,73 +58,63 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   let privateElement = null;  // notice goToShop func in chotot-xe project
   let AdTypeLabel = '';
   let AdTypeImg = '';
+  let ProfileUrl = '';
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
 
-  // user or shop
-  if ([AdTypeEnum.PRIVATE, AdTypeEnum.PRO, AdTypeEnum.COMPANY].indexOf(adTypeConfig.adType) > -1) {
-    if (adTypeConfig.adType === AdTypeEnum.PRO || adTypeConfig.adType === AdTypeEnum.COMPANY) {
-      AdTypeLabel = 'Bán chuyên';
-      AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
+  if (AdTypeEnum.PRIVATE === adTypeConfig.adType) {
+    // private
+    AdTypeLabel = 'Cá nhân';
+    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
+    ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
+    privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
 
-      if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {  // cate property
-        AdTypeLabel = 'Môi giới';
-      }
-      if (adTypeConfig.categoryId >= 13000 && adTypeConfig.categoryId < 14000) {  // cate job
-        AdTypeLabel = 'Công ty';
-      }
+  } else if ([AdTypeEnum.PRO, AdTypeEnum.COMPANY].indexOf(adTypeConfig.adType) > -1) {
+    // pro or company
+    AdTypeLabel = 'Bán chuyên';
+    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
+    ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
+    privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
 
-    } else {
-      AdTypeLabel = 'Cá nhân';
-      AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
+    if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {  // cate property
+      AdTypeLabel = 'Môi giới';
     }
-
-    privateElement = (
-      <a
-        href={`${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`}
-        target="_blank"
-      >
-        <SecondaryButton>
-          Xem trang
-        </SecondaryButton>
-      </a>
-    );
+    if (adTypeConfig.categoryId >= 13000 && adTypeConfig.categoryId < 14000) {  // cate job
+      AdTypeLabel = 'Công ty';
+    }
 
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
+    //shop
     AdTypeLabel = 'Cửa hàng';
     let labelBtn = 'Xem Cửa hàng';
-    if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
-      AdTypeLabel = 'Chuyên trang BĐS';
-      labelBtn = 'Xem Chuyên trang';
-    }
-
+    ProfileUrl = `${adTypeConfig.url}#ad_view`;
     AdTypeImg = adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED ?
       'https://static.chotot.com.vn/storage/chotot-icons/png/verified-house.png' :
       'https://static.chotot.com.vn/storage/chotot-icons/png/house.png';
 
-    privateElement = (
-      <a
-        href={`${adTypeConfig.url}#ad_view`}
-        target="_blank"
-      >
-        <PrimaryButton>
-          {labelBtn}
-        </PrimaryButton>
-      </a>
-    );
+    if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
+      AdTypeLabel = 'Chuyên trang BĐS';
+      labelBtn = 'Xem Chuyên trang';
+    }
+    privateElement = <PrimaryButton>{labelBtn}</PrimaryButton>;
   }
 
   // chat status
   const onlineStatus = chatStatus.online_status;
   const timeAgo = onlineStatus ? 'Đang hoạt động' :
-    (chatStatus.online_time === 0 ? 'Chưa hoạt động' : `Hoạt động ${moment(chatStatus.online_time * 1000).fromNow()}`);
+    (!chatStatus.online_time ?
+      'Chưa hoạt động' :
+      `Hoạt động ${moment(chatStatus.online_time * 1000).fromNow()}`
+    );
   let responseRateText = '---';
   if (!!chatStatus.response_rate) {
-    responseRateText = chatStatus.response_rate === -1 ? (chatStatus.response_rate_text || '---') : `${Math.floor(chatStatus.response_rate * 100)}%`;
+    responseRateText = chatStatus.response_rate === -1 ?
+      (chatStatus.response_rate_text || '---') :
+      `${Math.floor(chatStatus.response_rate * 100)}%`;
   }
 
   return (
     <UserProfileInfoWrapper>
-      <ProfileWrapper>
+      <ProfileWrapper href={ProfileUrl} target="_blank">
         <AvatarImage avatar={adTypeConfig.avatar} />
         <NameBounder>
           <FlexDiv>
@@ -134,6 +124,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
                 <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/verification.svg" height="20" />
               )}
             </NameDiv>
+            {/* button view profile */}
             {privateElement}
           </FlexDiv>
 
