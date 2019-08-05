@@ -59,20 +59,22 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   let AdTypeLabel = '';
   let AdTypeImg = '';
   let ProfileUrl = '';
+  let iconHeight = 20;
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
 
   if (AdTypeEnum.PRIVATE === adTypeConfig.adType) {
     // private
     AdTypeLabel = 'Cá nhân';
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/circle-user.svg';
+    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/private-grey-icon.png';
     ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
     privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
 
   } else if ([AdTypeEnum.PRO, AdTypeEnum.COMPANY].indexOf(adTypeConfig.adType) > -1) {
     // pro or company
     AdTypeLabel = 'Bán chuyên';
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/svg/suitcase.svg';
+    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/pro-grey-icon.png';
     ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
+    iconHeight = 16;
     privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {  // cate property
@@ -143,7 +145,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         {/* Personal */}
         <InfoItemComponent
           title={AdTypeLabel}
-          value={<img src={AdTypeImg} height="20" />}
+          value={<img src={AdTypeImg} height={iconHeight} />}
         />
 
         {/* Rating */}
