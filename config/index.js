@@ -43,6 +43,28 @@ const config = {
       },
     },
   },
+  uat: {
+    cookieDomain: '.chotot.cm',
+    baseURL: 'https://www.chotot.cm',
+    vehicleURL: 'https://xe.chotot.cm',
+    propertyURL: 'https://nha.chotot.cm',
+    accountBaseUrl: 'https://accounts.chotot.cm',
+    gatewayUrl: 'https://gateway.chotot.cm',
+    tracking: {
+      url: '//tags.tiqcdn.com/utag/chotot/chotot/chotot/qa/utag.js',
+      tealium: {
+        brand: 'chotot',
+        env: 'qa',
+      },
+      xiti: {
+        xtSiteId: '514221',
+        xtMobileSiteId: '517449',
+        xtLog: 'logw311',
+        xtLogSSL: 'logws1311',
+        xtCookieDomain: '.chotot.cm',
+      },
+    },
+  },
   production: {
     cookieDomain: '.chotot.com',
     baseURL: 'https://www.chotot.com',
