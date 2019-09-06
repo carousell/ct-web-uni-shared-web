@@ -46,7 +46,7 @@ export default class Facebook extends Component {
       <Button
         title="facebook"
         onClick={this.handleOnClick}
-        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-facebook.svg"
+        imgSrc="https://st.chotot.com/storage/chotot-icons/svg/circle-facebook.svg"
       />
     )
   }

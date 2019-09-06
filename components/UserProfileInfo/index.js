@@ -44,10 +44,10 @@ const shopVerifiedElement = () => {
     <ShopVerifiedWrapper>
       <span>Cửa hàng đã cung cấp </span>&nbsp;
       <span >
-        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/address_verified.svg" />
-        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/certificate_verified.svg" />
-        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/email_verified.svg" />
-        <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/phone_verified.svg" />
+        <img src="https://st.chotot.com/storage/chotot-icons/svg/address_verified.svg" />
+        <img src="https://st.chotot.com/storage/chotot-icons/svg/certificate_verified.svg" />
+        <img src="https://st.chotot.com/storage/chotot-icons/svg/email_verified.svg" />
+        <img src="https://st.chotot.com/storage/chotot-icons/svg/phone_verified.svg" />
       </span>
     </ShopVerifiedWrapper>
   );
@@ -65,14 +65,14 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   if (AdTypeEnum.PRIVATE === adTypeConfig.adType) {
     // private
     AdTypeLabel = 'Cá nhân';
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/private-grey-icon.png';
+    AdTypeImg = 'https://st.chotot.com/storage/chotot-icons/png/private-grey-icon.png';
     ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
     privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
 
   } else if ([AdTypeEnum.PRO, AdTypeEnum.COMPANY].indexOf(adTypeConfig.adType) > -1) {
     // pro or company
     AdTypeLabel = 'Bán chuyên';
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/pro-grey-icon.png';
+    AdTypeImg = 'https://st.chotot.com/storage/chotot-icons/png/pro-grey-icon.png';
     ProfileUrl = `${adTypeConfig.url}${profile.account_oid ? `/${profile.account_oid}` : ''}#xtatc=INT-10-[Adview]`;
     iconHeight = 16;
     privateElement = <SecondaryButton>Xem trang</SecondaryButton>;
@@ -89,7 +89,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
     AdTypeLabel = 'Cửa hàng';
     let labelBtn = 'Xem Cửa hàng';
     ProfileUrl = `${adTypeConfig.url}#ad_view`;
-    AdTypeImg = 'https://static.chotot.com.vn/storage/chotot-icons/png/house.png';
+    AdTypeImg = 'https://st.chotot.com/storage/chotot-icons/png/house.png';
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
       AdTypeLabel = 'Chuyên trang BĐS';
@@ -121,7 +121,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
             <NameDiv>
               <b>{adTypeConfig.name} </b>
               {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED && (
-                <img src="https://static.chotot.com.vn/storage/chotot-icons/svg/verification.svg" height="20" />
+                <img src="https://st.chotot.com/storage/chotot-icons/svg/verification.svg" height="20" />
               )}
             </NameDiv>
             {/* button view profile */}

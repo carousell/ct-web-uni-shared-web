@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import { saveAd, unsaveAd, getSaveAd, resetMessage } from './actions';
 import reducer from './reducer';
 
-const like = 'https://static.chotot.com.vn/storage/adType/adItem/heart.png';
-const unlike = 'https://static.chotot.com.vn/storage/adType/adItem/heart-active.png';
+const like = 'https://st.chotot.com/storage/adType/adItem/heart.png';
+const unlike = 'https://st.chotot.com/storage/adType/adItem/heart-active.png';
 
 const Wrapper = styled.button`
   background: transparent;
