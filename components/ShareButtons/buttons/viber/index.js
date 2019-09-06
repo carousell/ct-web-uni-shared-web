@@ -24,7 +24,7 @@ export default class Viber extends Component {
       <Button
         title="viber"
         target="_blank" href={viberLink}
-        imgSrc="https://static.chotot.com.vn/storage/chotot-icons/svg/circle-viber.svg"
+        imgSrc="https://st.chotot.com/storage/chotot-icons/svg/circle-viber.svg"
         onClick={this.handleOnClick}
       />
     )
