@@ -59,9 +59,9 @@ class CategoryDescription extends React.Component {
   render() {
     const { isHomePage } = this.props;
     const Description = __CLIENT__ && !isHomePage ? withLazy(description, this.props) : description;
-      return (
-        <Description {...this.props}/>
-      );
+    return (
+      <Description {...this.props}/>
+    );
   }
 };
 CategoryDescription.propTypes = {
