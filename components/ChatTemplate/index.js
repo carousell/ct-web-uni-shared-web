@@ -14,6 +14,9 @@ const TemplateMessage = styles.div`
 const TemplateItemWrapper = styles.ul`
   padding: 0px;
   height: 30px;
+  @media screen and (max-width: 767px) {
+    height: 25px;
+  }
 `
 const TemplateItem = styles.li`
   border: ${(props) => props.sent ? '1px solid #F4F4F4' : '1px solid #FE9900'}; 
@@ -25,6 +28,9 @@ const TemplateItem = styles.li`
   color: ${(props) => props.sent ? '#CACACA' : '#333'};
   ${(props) => props.sent ? 'pointer-events: none' : ''};
   cursor: pointer;
+  @media screen and (max-width: 767px) {
+    padding: 4px 5px;
+  }
 `
 const Title = styles.p`
   padding: 5px;
@@ -62,7 +68,6 @@ export default class ChatTemplate extends Component {
               {
                 templates.map((template, index) => {
                   const sent = sentMessage.indexOf(index) > -1 ? true : false;
-                  console.log('sent', sent)
                   return <TemplateItem 
                     sent={sent} 
                     key={index} 
