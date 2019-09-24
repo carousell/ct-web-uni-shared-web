@@ -25,8 +25,9 @@ const TemplateItem = styles.li`
   border-radius: 20px;
   margin: 5px 0 5px 10px;
   display: inline-block;
+  font-size: 13px;
   background-color: ${(props) => props.sent ? '#F4F4F4' : '#ffffff'}; 
-  color: ${(props) => props.sent ? '#CACACA' : '#333'};
+  color: ${(props) => props.sent ? '#9B9B9B' : '#000000'};
   ${(props) => props.sent ? 'pointer-events: none' : ''};
   cursor: pointer;
   @media screen and (max-width: 767px) {
@@ -37,7 +38,8 @@ const Title = styles.p`
   padding: 5px;
   margin: 0 15px 5px 15px;
   border-bottom: 1px solid #cacaca;
-  color: #cacaca;
+  color: #777777;
+  font-weight: bold;
 `
 export default class ChatTemplate extends Component {
   constructor(props) {
@@ -67,8 +69,9 @@ export default class ChatTemplate extends Component {
     render() {
       const { templates } = this.props;
       const { sentMessage } = this.state;
+      const shouldHideComponent = templates.length > 1 ? false : true;
       return (
-        <React.Fragment>
+        !shouldHideComponent && <React.Fragment>
           <Title>Hỏi người bán qua chat</Title>
           <TemplateMessage>
             <TemplateItemWrapper>
