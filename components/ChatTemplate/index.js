@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'styled-components'
+import config from 'config';
 
 const TemplateMessage = styles.div`
   overflow-x: scroll;
@@ -48,13 +49,19 @@ export default class ChatTemplate extends Component {
     static propTypes = {
       templates: PropTypes.array,
       sendTemplate: PropTypes.func,
+      isAuth: PropTypes.bool,
     }
     sendTemplate = (template, index) => {
+      const { isAuth } = this.props;
       const { sentMessage } = this.state;
-      this.setState({
-        sentMessage: [index, ...sentMessage]
-      });
-      return this.props.sendTemplate(template);
+
+      if(isAuth) {
+        this.setState({
+          sentMessage: [index, ...sentMessage]
+        });
+        return this.props.sendTemplate(template);
+      }
+      return window.location.href = config.loginLocation
     }
 
     render() {
