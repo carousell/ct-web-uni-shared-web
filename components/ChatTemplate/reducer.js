@@ -57,7 +57,6 @@ export function reducer(state = initialState, action = {}) {
       }
     }
     case SEND_TEMPLATE_MESSAGE_SUCCESS: {
-      console.log('run', action)
       const roomDetail = parseRoomData(action.result.result);
       return {
         ...state,
