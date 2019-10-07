@@ -31,7 +31,7 @@ export default class Zalo extends Component {
       <Button
         title="zalo"
         onClick={this.handleOnClick}
-        imgSrc="https://st.chotot.com/storage/chotot-icons/svg/circle-zalo.svg"
+        imgSrc="https://static.chotot.com/storage/chotot-icons/svg/circle-zalo.svg"
         className={"zalo-share-button"}
         data-href={link}
         data-oaid={zaloAppId}

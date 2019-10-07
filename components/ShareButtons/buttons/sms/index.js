@@ -24,7 +24,7 @@ export default class SMS extends Component {
       <Button
         title="sms"
         href={body}
-        imgSrc="https://st.chotot.com/storage/chotot-icons/svg/circle-sms.svg"
+        imgSrc="https://static.chotot.com/storage/chotot-icons/svg/circle-sms.svg"
         onClick={this.handleOnClick}
       />
     )

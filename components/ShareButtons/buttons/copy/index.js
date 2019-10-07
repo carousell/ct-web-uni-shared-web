@@ -61,7 +61,7 @@ export default class Copy extends Component {
         <Button
           title="copy"
           onClick={this.handleOnClick}
-          imgSrc="https://st.chotot.com/storage/chotot-icons/svg/circle-copylink.svg"
+          imgSrc="https://static.chotot.com/storage/chotot-icons/svg/circle-copylink.svg"
         />
         {
           this.state.showTooltip && (
