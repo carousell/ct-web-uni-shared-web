@@ -35,12 +35,14 @@ const TemplateItem = styles.li`
   }
 `
 const Title = styles.p`
-  padding: 5px;
+  padding: 5px 5px 5px 0;
   margin: 0 15px 5px 15px;
   border-bottom: 1px solid #cacaca;
   color: #777777;
   font-weight: bold;
 `
+
+
 export default class ChatTemplate extends Component {
   constructor(props) {
     super(props)
@@ -53,18 +55,20 @@ export default class ChatTemplate extends Component {
       sendTemplate: PropTypes.func,
       isAuth: PropTypes.bool,
     }
-    sendTemplate = (template, index) => {
+    sendTemplate = async (template, index) => {
       const { isAuth } = this.props;
       const { sentMessage } = this.state;
-
       if(isAuth) {
-        this.setState({
-          sentMessage: [index, ...sentMessage]
-        });
-        return this.props.sendTemplate(template);
+        return this.props.sendTemplate(template)
+          .then(() => 
+            this.setState({
+              sentMessage: [index, ...sentMessage]
+            }))
+          .catch(err => err)
       }
       const currentAdUrl = window.location.href;
-      return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`
+      return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`    
+
     }
 
     render() {

@@ -10,6 +10,18 @@ import {
   SEND_TEMPLATE_MESSAGE_SUCCESS
 } from './constants';
 
+const handleResponse = async response => {
+  try {
+    const data = await response.json()
+    if (!response.ok) {
+      throw data.error
+    }
+    return data
+  } catch (err) {
+    throw err
+  }
+
+};
 
 export const getTemplateMessage = ({ gatewayUrl, listId }) => {
   return {
@@ -20,7 +32,7 @@ export const getTemplateMessage = ({ gatewayUrl, listId }) => {
         headers: {
           'Content-Type': 'application/json',
         }
-      }).then(data => data.json()).then(data => data).catch(error => console.log('error', error))
+      }).then(data => data.json()).then(data => data)
   }
 }
 
@@ -44,6 +56,10 @@ export const sendTemplateMessage = ({gatewayUrl, message, listId, accessToken}) 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(bodyData)
-      }).then(data => data.json()).then(data => data).catch(err => { throw err})
+      })
+        .then(data => handleResponse(data))
+        .catch(err => {
+          throw err
+        })
   }
 }

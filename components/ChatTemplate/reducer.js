@@ -15,6 +15,7 @@ const initialState = {
     partnerName: '',
     roomId: null
   },
+  error: null,  
   sendingMessage: false,
   sendSuccess: false,
   success: false
@@ -53,7 +54,8 @@ export function reducer(state = initialState, action = {}) {
     case SEND_TEMPLATE_MESSAGE: {
       return {
         ...state,
-        sendingMessage: true
+        sendingMessage: true,
+        error: null,
       }
     }
     case SEND_TEMPLATE_MESSAGE_SUCCESS: {
@@ -61,6 +63,7 @@ export function reducer(state = initialState, action = {}) {
       return {
         ...state,
         roomDetail,
+        error: null,
         sendSuccess: true,
         sendingMessage: false
       }
@@ -68,6 +71,7 @@ export function reducer(state = initialState, action = {}) {
     case SEND_TEMPLATE_MESSAGE_FAIL: {
       return {
         ...state,
+        error: action.error,
         sendingMessage: false
       }
     }
