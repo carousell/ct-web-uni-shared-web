@@ -44,6 +44,6 @@ export const sendTemplateMessage = ({gatewayUrl, message, listId, accessToken}) 
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(bodyData)
-      }).then(data => data.json()).then(data => data)
+      }).then(data => data.json()).then(data => data).catch(err => { throw err})
   }
 }

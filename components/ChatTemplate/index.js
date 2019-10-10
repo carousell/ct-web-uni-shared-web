@@ -63,7 +63,8 @@ export default class ChatTemplate extends Component {
         });
         return this.props.sendTemplate(template);
       }
-      return window.location.href = config.loginLocation
+      const currentAdUrl = window.location.href;
+      return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`
     }
 
     render() {
