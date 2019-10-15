@@ -56,6 +56,7 @@ export function reducer(state = initialState, action = {}) {
         ...state,
         sendingMessage: true,
         error: null,
+        sendSuccess: false
       }
     }
     case SEND_TEMPLATE_MESSAGE_SUCCESS: {
@@ -72,7 +73,8 @@ export function reducer(state = initialState, action = {}) {
       return {
         ...state,
         error: action.error,
-        sendingMessage: false
+        sendingMessage: false,
+        sendSuccess: false
       }
     }
     default: {
