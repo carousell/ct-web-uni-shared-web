@@ -36,7 +36,7 @@ export function reducer(state = initialState, action = {}) {
       }
     }
     case GET_TEMPLATE_MESSAGE_SUCCESS: {
-      const templateMessage =action.result.result.messages ? action.result.result.messages.slice(0,5) : [];
+      const templateMessage = action.result.result.messages ? action.result.result.messages.slice(0,5) : [];
       return {
         ...state,
         loading: false,

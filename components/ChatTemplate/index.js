@@ -43,56 +43,58 @@ const Title = styles.p`
 `
 
 
-export default class ChatTemplate extends Component {
+class ChatTemplate extends Component {
   constructor(props) {
     super(props)
     this.state =  {
       sentMessage: []
     }
   }
-    static propTypes = {
-      templates: PropTypes.array,
-      sendTemplate: PropTypes.func,
-      isAuth: PropTypes.bool,
+  static propTypes = {
+    templates: PropTypes.array,
+    sendTemplate: PropTypes.func,
+    isAuth: PropTypes.bool,
+  }
+  sendTemplate = async (template, index) => {
+    const { isAuth } = this.props;
+    const { sentMessage } = this.state;
+    if(isAuth) {
+      return this.props.sendTemplate(template)
+        .then(() => 
+          this.setState({
+            sentMessage: [index, ...sentMessage]
+          }))
+        .catch(err => err)
     }
-    sendTemplate = async (template, index) => {
-      const { isAuth } = this.props;
-      const { sentMessage } = this.state;
-      if(isAuth) {
-        return this.props.sendTemplate(template)
-          .then(() => 
-            this.setState({
-              sentMessage: [index, ...sentMessage]
-            }))
-          .catch(err => err)
-      }
-      const currentAdUrl = window.location.href;
-      return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`    
+    const currentAdUrl = window.location.href;
+    return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`    
+  }
 
-    }
-
-    render() {
-      const { templates } = this.props;
-      const { sentMessage } = this.state;
-      const shouldHideComponent = templates.length > 1 ? false : true;
-      return (
-        !shouldHideComponent && <React.Fragment>
-          <Title>Hỏi người bán qua chat</Title>
-          <TemplateMessage>
-            <TemplateItemWrapper>
-              {
-                templates.map((template, index) => {
-                  const sent = sentMessage.indexOf(index) > -1 ? true : false;
-                  return <TemplateItem 
-                    sent={sent} 
-                    key={index} 
-                    onClick={() => this.sendTemplate(template, index)}>{template}
-                  </TemplateItem>
-                })
-              }
-            </TemplateItemWrapper>
-          </TemplateMessage>
-        </React.Fragment>
-      )
-    }
+  render() {
+    const { templates } = this.props;
+    const { sentMessage } = this.state;
+    return (
+      <div>
+        <Title>Hỏi người bán qua chat</Title>
+        <TemplateMessage>
+          <TemplateItemWrapper>
+            {
+              templates.map((template, index) => {
+                const sent = sentMessage.indexOf(index) > -1 ? true : false;
+                return (<TemplateItem 
+                  sent={sent} 
+                  key={index} 
+                  onClick={() => this.sendTemplate(template, index)}
+                  >
+                  {template}
+                </TemplateItem>)
+              })
+            }
+          </TemplateItemWrapper>
+        </TemplateMessage>
+      </div>
+    )
+  }
 }
+
+export default ChatTemplate
