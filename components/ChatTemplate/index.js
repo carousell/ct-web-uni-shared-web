@@ -90,7 +90,7 @@ class ChatTemplate extends Component {
                   sent={sent} 
                   key={index} 
                   onClick={() => this.sendTemplate(template, index)}
-                  >
+                >
                   {template}
                 </TemplateItem>)
               })
