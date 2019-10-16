@@ -55,6 +55,12 @@ class ChatTemplate extends Component {
     sendTemplate: PropTypes.func,
     isAuth: PropTypes.bool,
   }
+  componentWillReceiveProps(nextProps) {
+    const { listId } = nextProps;
+    if (listId !== this.props.listId) {
+      this.setState({sentMessage: []})
+    }
+  }
   sendTemplate = async (template, index) => {
     const { isAuth } = this.props;
     const { sentMessage } = this.state;
@@ -69,7 +75,6 @@ class ChatTemplate extends Component {
     const currentAdUrl = window.location.href;
     return window.location.href = `${config.loginLocation}?continue=${currentAdUrl}`    
   }
-
   render() {
     const { templates } = this.props;
     const { sentMessage } = this.state;
