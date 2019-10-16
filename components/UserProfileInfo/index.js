@@ -130,10 +130,10 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
           {/* online time */}
           {chatStatus.user_id ? // check chat status loaded
-            <StatusOnlineDiv>
-              <OnlineBullet online={onlineStatus}>•</OnlineBullet>
-              {timeAgo}
-            </StatusOnlineDiv> : null
+    <StatusOnlineDiv>
+      <OnlineBullet online={onlineStatus}>•</OnlineBullet>
+      {timeAgo}
+    </StatusOnlineDiv> : null
           }
         </NameBounder>
       </ProfileWrapper>
