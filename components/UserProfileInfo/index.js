@@ -53,7 +53,7 @@ const shopVerifiedElement = () => {
   );
 };
 
-const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ...other }) => {
+const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ABTestIconShop = '', ...other }) => {
 
   let privateElement = null;  // notice goToShop func in chotot-xe project
   let AdTypeLabel = '';
@@ -86,10 +86,18 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
     //shop
-    AdTypeLabel = 'Cửa hàng';
-    let labelBtn = 'Xem Cửa hàng';
-    ProfileUrl = `${adTypeConfig.url}#ad_view`;
-    AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
+    let labelBtn;
+    if (ABTestIconShop && ABTestIconShop.toLowerCase() === 'a') {
+      AdTypeLabel = 'Cửa hàng';
+      labelBtn = 'Xem Cửa hàng';
+      ProfileUrl = `${adTypeConfig.url}#ad_view`;
+      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
+    } else {
+      AdTypeLabel = 'Cửa hàng';
+      labelBtn = 'Xem Cửa hàng';
+      ProfileUrl = `${adTypeConfig.url}#ad_view`;
+      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/shop_gray.png';
+    }
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
       AdTypeLabel = 'Chuyên trang BĐS';
