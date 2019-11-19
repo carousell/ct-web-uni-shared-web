@@ -87,7 +87,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
     //shop
     let labelBtn;
-    if (ABTestIconShop && ABTestIconShop.toLowerCase() === 'a') {
+    if (ABTestIconShop && ABTestIconShop === 'old') {
       AdTypeLabel = 'Cửa hàng';
       labelBtn = 'Xem Cửa hàng';
       ProfileUrl = `${adTypeConfig.url}#ad_view`;
