@@ -86,16 +86,12 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   } else if ([AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].indexOf(adTypeConfig.adType) > -1) {
     //shop
-    let labelBtn;
+    AdTypeLabel = 'Cửa hàng';
+    let labelBtn = 'Xem Cửa hàng';
+    ProfileUrl = `${adTypeConfig.url}#ad_view`;
     if (ABTestIconShop && ABTestIconShop === 'old') {
-      AdTypeLabel = 'Cửa hàng';
-      labelBtn = 'Xem Cửa hàng';
-      ProfileUrl = `${adTypeConfig.url}#ad_view`;
       AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
     } else {
-      AdTypeLabel = 'Cửa hàng';
-      labelBtn = 'Xem Cửa hàng';
-      ProfileUrl = `${adTypeConfig.url}#ad_view`;
       AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/shop_gray.png';
     }
 
