@@ -91,8 +91,10 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
     ProfileUrl = `${adTypeConfig.url}#ad_view`;
     if (ABTestIconShop && ABTestIconShop === 'old') {
       AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
-    } else {
+    } else if (ABTestIconShop && ABTestIconShop === 'new') {
       AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/shop_gray.png';
+    } else {
+      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
     }
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
