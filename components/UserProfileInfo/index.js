@@ -61,6 +61,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   let ProfileUrl = '';
   let iconHeight = 20;
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
+  const ratingDetailShopUrl = `${adTypeConfig.url}?tab=rating`;
 
   if (AdTypeEnum.PRIVATE === adTypeConfig.adType) {
     // private
@@ -151,7 +152,9 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         {/* Rating */}
         {isShowRating && <SeperateLine />}
         {isShowRating &&
-          <a href={ratingDetailUrl}>
+          <a
+            href={[AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].includes(adTypeConfig.adType) ?
+              ratingDetailShopUrl : ratingDetailUrl}>
             <InfoItemComponent
               title="Đánh giá"
               value={!rating.total ?
