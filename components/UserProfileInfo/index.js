@@ -53,7 +53,7 @@ const shopVerifiedElement = () => {
   );
 };
 
-const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, ABTestIconShop = '', trackingClickShopEntryPointAdView, ...other }) => {
+const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, trackingClickShopEntryPointAdView, ...other }) => {
 
   let privateElement = null;  // notice goToShop func in chotot-xe project
   let AdTypeLabel = '';
@@ -62,6 +62,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
   let iconHeight = 20;
   let onClickOwnerEntryPoint = null;
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
+  const ratingDetailShopUrl = `${adTypeConfig.url}?tab=rating`;
 
   if (AdTypeEnum.PRIVATE === adTypeConfig.adType) {
     // private
@@ -90,13 +91,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
     AdTypeLabel = 'Cửa hàng';
     let labelBtn = 'Xem Cửa hàng';
     ProfileUrl = `${adTypeConfig.url}#ad_view`;
-    if (ABTestIconShop && ABTestIconShop === 'old') {
-      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
-    } else if (ABTestIconShop && ABTestIconShop === 'new') {
-      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/shop_gray.png';
-    } else {
-      AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
-    }
+    AdTypeImg = 'https://static.chotot.com/storage/chotot-icons/png/house.png';
 
     if (adTypeConfig.category >= 1000 && adTypeConfig.category < 2000) {
       AdTypeLabel = 'Chuyên trang BĐS';
@@ -159,7 +154,9 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         {/* Rating */}
         {isShowRating && <SeperateLine />}
         {isShowRating &&
-          <a href={ratingDetailUrl}>
+          <a
+            href={[AdTypeEnum.SHOP, AdTypeEnum.SHOP_VERIFIED].includes(adTypeConfig.adType) ?
+              ratingDetailShopUrl : ratingDetailUrl}>
             <InfoItemComponent
               title="Đánh giá"
               value={!rating.total ?
