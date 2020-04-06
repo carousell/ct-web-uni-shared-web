@@ -111,6 +111,7 @@ const InfoItem = styled.div`
     font-size: 12px;
     color: rgb(155, 155, 155);
     margin-bottom: 5px;
+    text-decoration: ${props => props.underline ? 'underline': 'initial' };
   }
   & > span {
     color: #000;
