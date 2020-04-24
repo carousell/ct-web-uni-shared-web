@@ -30,9 +30,9 @@ const AdTypeEnum = {
   SHOP_VERIFIED: 'shop_verified'
 };
 
-const InfoItemComponent = ({ title, value }) => {
+const InfoItemComponent = ({ title, value, underline }) => {
   return (
-    <InfoItem>
+    <InfoItem underline={underline}>
       <p>{title}</p>
       <span>{value}</span>
     </InfoItem>
@@ -157,6 +157,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
               ratingDetailShopUrl : ratingDetailUrl}>
             <InfoItemComponent
               title="Đánh giá"
+              underline
               value={!rating.total ?
                 '---' :
                 <RatingStar rating={rating.avg} width="13px" />
