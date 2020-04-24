@@ -53,14 +53,13 @@ const shopVerifiedElement = () => {
   );
 };
 
-const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, trackingClickShopEntryPointAdView, ...other }) => {
+const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, goToRatingDetail, isShowRating, chatStatus = {}, trackingClickOwnerEntryPointAdView, ...other }) => {
 
   let privateElement = null;  // notice goToShop func in chotot-xe project
   let AdTypeLabel = '';
   let AdTypeImg = '';
   let ProfileUrl = '';
   let iconHeight = 20;
-  let onClickOwnerEntryPoint = null;
   const ratingDetailUrl = `${adTypeConfig.url}/${profile.account_oid}/chi-tiet-danh-gia`;
   const ratingDetailShopUrl = `${adTypeConfig.url}?tab=rating`;
 
@@ -97,7 +96,6 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
       AdTypeLabel = 'Chuyên trang BĐS';
       labelBtn = 'Xem Chuyên trang';
     }
-    onClickOwnerEntryPoint = trackingClickShopEntryPointAdView;
     privateElement = <PrimaryButton>{labelBtn}</PrimaryButton>;
   }
 
@@ -117,7 +115,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
 
   return (
     <UserProfileInfoWrapper>
-      <ProfileWrapper href={ProfileUrl} target="_blank" onClick={onClickOwnerEntryPoint}>
+      <ProfileWrapper href={ProfileUrl} target="_blank" onClick={trackingClickOwnerEntryPointAdView}>
         <AvatarImage avatar={adTypeConfig.avatar} />
         <NameBounder>
           <FlexDiv>
