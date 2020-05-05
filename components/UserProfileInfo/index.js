@@ -44,10 +44,10 @@ const shopVerifiedElement = () => {
     <ShopVerifiedWrapper>
       <span>Cửa hàng đã cung cấp </span>&nbsp;
       <span >
-        <img src="https://static.chotot.com/storage/chotot-icons/svg/address_verified.svg" />
-        <img src="https://static.chotot.com/storage/chotot-icons/svg/certificate_verified.svg" />
-        <img src="https://static.chotot.com/storage/chotot-icons/svg/email_verified.svg" />
-        <img src="https://static.chotot.com/storage/chotot-icons/svg/phone_verified.svg" />
+        <img src="https://static.chotot.com/storage/chotot-icons/svg/address_verified.svg" alt=" " />
+        <img src="https://static.chotot.com/storage/chotot-icons/svg/certificate_verified.svg" alt=" " />
+        <img src="https://static.chotot.com/storage/chotot-icons/svg/email_verified.svg" alt=" " />
+        <img src="https://static.chotot.com/storage/chotot-icons/svg/phone_verified.svg" alt=" " />
       </span>
     </ShopVerifiedWrapper>
   );
@@ -122,7 +122,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
             <NameDiv>
               <b>{adTypeConfig.name} </b>
               {adTypeConfig.adType === AdTypeEnum.SHOP_VERIFIED && (
-                <img src="https://static.chotot.com/storage/chotot-icons/svg/verification.svg" height="20" />
+                <img src="https://static.chotot.com/storage/chotot-icons/svg/verification.svg" height="20" alt=" " />
               )}
             </NameDiv>
             {/* button view profile */}
@@ -146,7 +146,7 @@ const UserProfileInfo = ({ adTypeConfig, profile = {}, rating = {}, children, go
         {/* Personal */}
         <InfoItemComponent
           title={AdTypeLabel}
-          value={<img src={AdTypeImg} height={iconHeight} />}
+          value={<img src={AdTypeImg} height={iconHeight} alt=" " />}
         />
 
         {/* Rating */}
